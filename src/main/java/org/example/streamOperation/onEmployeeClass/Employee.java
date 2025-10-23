@@ -1,4 +1,4 @@
-package org.example.streamOperation;
+package org.example.streamOperation.onEmployeeClass;
 
 public class Employee {
    private long empId;

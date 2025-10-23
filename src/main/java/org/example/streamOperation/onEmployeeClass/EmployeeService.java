@@ -1,4 +1,4 @@
-package org.example.streamOperation;
+package org.example.streamOperation.onEmployeeClass;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -38,6 +38,11 @@ public class EmployeeService {
     public static String highPaidEmployee(){
         return  employee.stream().max(Comparator.comparingDouble(Employee::getSalary)).map(Employee::getEmpName).get();
     }
+
+    public static Map<Boolean, List<Employee>> getPartitioedEmploees(){
+        Map<Boolean, List<Employee>> collect = employee.stream().collect(Collectors.partitioningBy(x -> x.getAge() > 30));
+        return collect;
+    }
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
@@ -65,7 +70,12 @@ public class EmployeeService {
         // all employee names
         System.out.println("All employee name : " + allEmployeeNames());
         System.out.println("High paid employee: " + highPaidEmployee());
-        getPartitioedEmploees();
+        Map<Boolean, List<Employee>> partitioedEmploees = getPartitioedEmploees();
+        partitioedEmploees.forEach((isOlder, list) -> {
+            System.out.println(isOlder ? "Older than 30":"30 or younger");
+            list.stream().map(x -> x.getEmpName()).forEach(System.out::println);
+        });
+
 
 //        System.out.println("female and male count: " );
 //        Map<String, Map<String, Long>> maleFemaleCountEchDept = maleFemaleCountEchDept();

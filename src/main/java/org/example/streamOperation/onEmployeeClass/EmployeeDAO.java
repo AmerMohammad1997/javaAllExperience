@@ -1,4 +1,4 @@
-package org.example.streamOperation;
+package org.example.streamOperation.onEmployeeClass;
 
 import java.util.ArrayList;
 import java.util.List;
